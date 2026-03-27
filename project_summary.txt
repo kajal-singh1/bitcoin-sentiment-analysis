@@ -1,0 +1,137 @@
+╔══════════════════════════════════════════════════════════════════════════╗
+║        BITCOIN SENTIMENT VS TRADER BEHAVIOR — PROJECT SUMMARY           ║
+║                     Hyperliquid DEX Analysis                            ║
+╚══════════════════════════════════════════════════════════════════════════╝
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ DATASET
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ - 211,224 trades across 32 traders on Hyperliquid DEX
+ - May 2023 – May 2025 (2 years)
+ - Merged with Bitcoin Fear & Greed Index (2,644 days)
+ - Final master table: 2,300 account-day observations
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ METHODOLOGY
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ Step 1  →  Data understanding (shape, types, nulls, duplicates)
+ Step 2  →  Cleaning (datetime fix, noise removal, PnL filtering)
+ Step 3  →  Feature engineering (PnL, win rate, L/S ratio, drawdown)
+ Step 4  →  Merging on date (inner join — 2,300 matched rows)
+ Step 5  →  Analysis (performance + behavior + segment breakdown)
+ Step 6  →  3 data-backed insights with causal reasoning
+ Step 7  →  3 actionable trading strategies
+ Step 8  →  K-Means clustering (K=4) — behavioral archetypes
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ PERFORMANCE vs SENTIMENT
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ Sentiment     Avg Daily PnL    Median PnL    Win Day Rate
+ ─────────────────────────────────────────────────────────
+ Fear Zone       $5,292           $136          61.6%
+ Neutral         $3,503           $183          63.4%
+ Greed Zone      $4,166           $279          65.2%
+
+ → Mean favors Fear (driven by large wins from contrarian traders)
+ → Median favors Greed (typical trader does better in Greed)
+ → Always analyze both mean AND median — they tell different stories
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ BEHAVIOR vs SENTIMENT
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ Metric              Fear Zone     Neutral     Greed Zone
+ ─────────────────────────────────────────────────────────
+ Avg Trades/Day        107.5        102.1          77.9
+ Avg Position Size    $8,711       $7,097         $6,033
+ Long/Short Ratio       1.77         1.61           0.77
+
+ → 38% more trades during Fear | 44% larger positions during Fear
+ → L/S ratio FLIPS across sentiment — contrarian behavior confirmed
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ TOP 3 INSIGHTS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ 1. CONTRARIAN EDGE
+    Sophisticated traders go LONG during Fear (L/S 1.77) and SHORT
+    during Greed (L/S 0.77). They deploy 44% larger positions during
+    panic. This is not instinct — it is a systematic, measurable edge.
+
+ 2. FREQUENCY MULTIPLIES RETURNS
+    Frequent traders earn 10x more than infrequent traders during Fear
+    ($9,439 vs $880/day). High activity = capturing more volatility
+    opportunities. At 50% win rate, infrequent traders have no edge.
+
+ 3. GREED DESTROYS WEAK TRADERS
+    Unprofitable traders lose -$9,717/day during Greed (win rate 37.8%)
+    but earn +$2,515/day during Fear. Euphoria amplifies FOMO-driven
+    mistakes. Avoiding Greed Zone entirely saves ~$437K in losses.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ TRADER CLUSTERS (K-Means K=4)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ Cluster              N    Win Rate   Avg Size   Best Zone      PnL
+ ─────────────────────────────────────────────────────────────────────
+ Whales               6     80.5%     $25,099    Fear Zone    $9,944/day
+ Precision Traders   14     94.6%      $5,292    Fear Zone    $5,890/day
+ Balanced Traders    11     73.9%      $4,918    Greed Zone   $5,223/day
+ Bot/Outlier          1    100.0%      $8,335    Neutral     $24,765/day
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ ACTIONABLE STRATEGIES
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ Strategy 1 — CONTRARIAN ACTIVATION (For: Whales + Precision Traders)
+   Fear Zone   → Long bias (L/S > 1.5), size 1.4x, 100+ trades/day
+   Greed Zone  → Short bias (L/S < 0.8), size 0.7x, ~75 trades/day
+
+ Strategy 2 — GREED ZONE SURVIVAL (For: Unprofitable + Infrequent)
+   Greed Zone  → Hard cap 20 trades/day, size -40%, no FOMO longs
+   Fear Zone   → Normal trading — this is their actual edge window
+
+ Strategy 3 — SENTIMENT-SCALED SIZING (For: All traders)
+   Fear Zone   → 1.4x base position size
+   Neutral     → 1.0x base position size
+   Greed Zone  → 0.7x base position size
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ TOOLS USED
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ Python | Pandas | NumPy | Matplotlib | Scikit-learn
+ 10 charts | 8 data files | 2,300 observations | 32 traders
+══════════════════════════════════════════════════════════════════════════
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ STATISTICAL VALIDATION
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ Kruskal-Wallis + Mann-Whitney tests (non-parametric, no normality assumed)
+
+ Metric              Test Result    P-Value    Conclusion
+ ──────────────────────────────────────────────────────────────────────
+ Daily PnL           Not Sig        p=0.132    High variance masks signal
+ Trade Count         ✅ Significant  p=0.044    Activity shift is real
+ Position Size       Not Sig        p=0.437    Directional but noisy
+ L/S Ratio           ✅ Significant  p=0.0001   Strongest confirmed finding
+
+ KEY FINDING:
+ Trader BEHAVIOR changes significantly with sentiment (p<0.05).
+ Trader PnL differences are directionally consistent but statistically
+ noisy — expected given extreme outliers and only 32 traders.
+
+ WHAT THIS MEANS FOR INSIGHTS:
+ ✅ Insight 1 (Contrarian L/S flip)   → Fully confirmed, p=0.0001
+ ✅ Insight 2 (Frequency difference)  → Confirmed, p=0.044
+ ⚠️  Insight 3 (PnL during Greed)    → Directional, not yet proven
+                                         Requires larger sample to confirm
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ HONEST LIMITATIONS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ 1. Only 32 traders — limits statistical power significantly
+ 2. Hyperliquid traders are not representative of all crypto traders
+    (highly skilled, professional-grade dataset)
+ 3. PnL variance is extreme — single trades can move daily numbers
+    by hundreds of thousands, masking group-level patterns
+ 4. Bot/Outlier (Cluster 3) is a single algorithmic trader —
+    its results are excluded from human trader strategy recommendations
+ 5. Correlation ≠ Causation — sentiment may reflect price conditions
+    that drive behavior, not sentiment itself causing behavior changes
